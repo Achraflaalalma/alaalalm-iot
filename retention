@@ -1,0 +1,27 @@
+Question,Answer
+What is kubectl?,kubectl is the command-line tool used to interact with a Kubernetes cluster.
+What caused the "Exec format error" when installing kubectl?,You downloaded the wrong CPU architecture binary (amd64 instead of ARM64 for your VM).
+Why did kubectl first show "Permission denied"?,Because the binary was not marked as executable (missing chmod +x).
+What is the correct kubectl installation step sequence?,Download binary → chmod +x → move to /usr/local/bin → verify.
+Why did sudo kubectl fail in k3d setup?,Because sudo uses root which does not have the kubeconfig configured.
+What is kubeconfig?,A configuration file that tells kubectl which cluster to connect to and how.
+What does k3d do?,k3d runs lightweight Kubernetes clusters (k3s) inside Docker containers.
+What is required before using k3d?,A working Docker installation.
+What happened when k3d cluster create succeeded?,It created a full Kubernetes cluster running inside Docker containers.
+Why did kubectl show localhost:8080 error?,Because it had no valid kubeconfig and defaulted to a non-existent local cluster.
+What fixes kubectl not connecting to k3d cluster?,Setting KUBECONFIG to the k3d-generated config file.
+What is a Kubernetes namespace?,A logical partition inside a cluster used to organize and isolate resources.
+Can multiple environments exist in one Kubernetes cluster?,Yes, dev, staging, and prod can all run in one cluster using namespaces.
+What is the benefit of namespaces?,They provide organization, isolation, name separation, and resource control.
+What happens if you do not use namespaces?,Everything goes into the default namespace, causing clutter and no separation.
+Are namespaces full security boundaries?,No, they are soft isolation; real security is handled by RBAC.
+What is RBAC in Kubernetes?,Role-Based Access Control that defines what actions users can perform.
+What is Argo CD?,A GitOps tool that continuously syncs Kubernetes state with Git repositories.
+Is Argo CD a microservices system?,Yes, it is made of multiple containerized components working together.
+What are main Argo CD components?,argocd-server, repo-server, application-controller, dex-server, and Redis.
+Why does Argo CD use a namespace?,To isolate system components from user applications and simplify management.
+What happens if Argo CD is installed without a namespace?,All its components go into the default namespace, causing clutter and poor organization.
+What is kubectl apply -n argocd -f doing?,It installs all Argo CD resources into the argocd namespace.
+What does kubectl get pods -n argocd do?,It lists only the pods inside the argocd namespace.
+Why use namespaces in Kubernetes?,To organize resources and separate environments within the same cluster.
+What is the relationship between kubectl, k3d, and Kubernetes?,kubectl is the client, k3d creates the cluster, Kubernetes runs the system.
